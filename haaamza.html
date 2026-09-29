@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BudgetBasics | Smart Money for Students</title>
+<style>
+:root{
+  --primary:#6c5ce7;
+  --primary2:#8e7cff;
+  --dark:#17172b;
+  --text:#292943;
+  --muted:#70708a;
+  --bg:#f7f7fc;
+  --white:#fff;
+  --green:#19a974;
+  --orange:#f39c12;
+  --red:#e74c3c;
+  --shadow:0 12px 35px rgba(38,35,75,.10);
+  --radius:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+button,input,select{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+.container{width:min(1160px,92%);margin:auto}
+.navbar{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);box-shadow:0 4px 18px rgba(0,0,0,.06)}
+.nav-inner{height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-size:24px;font-weight:800;color:var(--dark)}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;gap:6px;list-style:none;align-items:center}
+.nav-links a{display:block;padding:10px 13px;border-radius:12px;font-weight:600;font-size:14px}
+.nav-links a:hover,.nav-links a.active{background:#eeeaff;color:var(--primary)}
+.menu-btn{display:none;border:0;background:#eeeaff;color:var(--primary);padding:9px 12px;border-radius:10px}
+.hero{padding:80px 0 60px;background:linear-gradient(135deg,#17172b 0%,#302c63 55%,#6c5ce7 100%);color:#fff;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:45px;align-items:center}
+.badge{display:inline-block;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.2);padding:7px 13px;border-radius:999px;font-size:13px;margin-bottom:18px}
+.hero h1{font-size:clamp(38px,6vw,68px);line-height:1.05;margin-bottom:20px}
+.hero h1 span{color:#b9b0ff}
+.hero p{font-size:18px;color:#e8e7f5;max-width:620px}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{border:0;border-radius:13px;padding:13px 19px;font-weight:700;transition:.2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:#fff;color:var(--primary)}
+.btn-dark{background:var(--primary);color:#fff}
+.btn-outline{background:transparent;border:1px solid #ddd;color:var(--text)}
+.hero .btn-outline{border-color:rgba(255,255,255,.4);color:#fff}
+.hero-card{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.18);border-radius:28px;padding:25px;box-shadow:0 20px 50px rgba(0,0,0,.2)}
+.money{font-size:44px;font-weight:800;margin:8px 0}
+.bar{height:12px;background:rgba(255,255,255,.16);border-radius:99px;overflow:hidden;margin:14px 0}
+.bar span{display:block;height:100%;width:68%;background:#a99cff;border-radius:99px}
+.mini-row{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.section{padding:75px 0}
+.section-head{text-align:center;max-width:700px;margin:0 auto 38px}
+.section-head h2{font-size:36px;color:var(--dark);margin-bottom:8px}
+.section-head p{color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--white);border-radius:var(--radius);padding:25px;box-shadow:var(--shadow)}
+.card .icon{width:50px;height:50px;border-radius:15px;background:#eeeaff;display:grid;place-items:center;font-size:24px;margin-bottom:17px}
+.card h3{margin-bottom:8px;color:var(--dark)}
+.card p{color:var(--muted)}
+.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.tool{background:#fff;padding:28px;border-radius:var(--radius);box-shadow:var(--shadow)}
+.tool h3{margin-bottom:16px;color:var(--dark)}
+label{display:block;font-weight:700;font-size:14px;margin:12px 0 6px}
+input,select{width:100%;padding:13px;border:1px solid #ddddec;border-radius:12px;outline:none;background:#fff}
+input:focus,select:focus{border-color:var(--primary);box-shadow:0 0 0 3px #eeeaff}
+.result{margin-top:17px;padding:16px;border-radius:14px;background:#f0edff;color:#3d347f;font-weight:700}
+.budget-table{width:100%;border-collapse:collapse;background:#fff;border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+.budget-table th,.budget-table td{padding:15px;text-align:left;border-bottom:1px solid #eee}
+.budget-table th{background:#f0edff;color:#43398f}
+.progress-wrap{margin:12px 0}
+.progress-label{display:flex;justify-content:space-between;font-size:13px;font-weight:700}
+.progress{height:10px;background:#ececf4;border-radius:20px;overflow:hidden;margin-top:6px}
+.progress i{display:block;height:100%;background:var(--primary);border-radius:20px}
+.accordion{background:#fff;border-radius:16px;margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden}
+.acc-q{width:100%;border:0;background:#fff;padding:18px;text-align:left;font-weight:700;display:flex;justify-content:space-between}
+.acc-a{display:none;padding:0 18px 18px;color:var(--muted)}
+.acc-a.show{display:block}
+.cta{background:linear-gradient(135deg,#6c5ce7,#3f36a8);color:#fff;border-radius:28px;padding:45px;text-align:center}
+.cta h2{font-size:34px;margin-bottom:10px}
+.footer{background:#151526;color:#d9d9e8;padding:45px 0 20px;margin-top:20px}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}
+.footer h3,.footer h4{color:#fff;margin-bottom:12px}
+.footer p,.footer li{color:#aaaac0}
+.footer ul{list-style:none}
+.footer li{margin:7px 0}
+.copy{text-align:center;border-top:1px solid #2b2b40;margin-top:30px;padding-top:18px;font-size:13px}
+.toast{position:fixed;right:20px;bottom:20px;background:#17172b;color:#fff;padding:13px 18px;border-radius:12px;box-shadow:var(--shadow);display:none;z-index:2000}
+@media(max-width:850px){
+ .nav-links{display:none;position:absolute;left:4%;right:4%;top:74px;background:#fff;padding:10px;border-radius:16px;box-shadow:var(--shadow);flex-direction:column;align-items:stretch}
+ .nav-links.show{display:flex}.nav-links a{width:100%}.menu-btn{display:block}
+ .hero-grid,.tool-grid{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}
+ .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+ .cards,.footer-grid{grid-template-columns:1fr}.hero{padding-top:55px}.section{padding:55px 0}
+ .hero h1{font-size:43px}.cta{padding:30px 20px}
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+ <div class="container nav-inner">
+  <a class="logo" href="#home">Budget<span>Basics</span></a>
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <ul class="nav-links" id="navLinks">
+   <li><a href="#home" class="active">Home</a></li>
+   <li><a href="#basics">Basics</a></li>
+   <li><a href="#needs">Needs vs Wants</a></li>
+   <li><a href="#tools">Tools</a></li>
+   <li><a href="#mistakes">Mistakes</a></li>
+   <li><a href="#about">About</a></li>
+  </ul>
+ </div>
+</nav>
+
+<section class="hero" id="home">
+ <div class="container hero-grid">
+  <div>
+   <span class="badge">🎓 Student Money Education</span>
+   <h1>Build better money habits with <span>BudgetBasics.</span></h1>
+   <p>Learn budgeting, saving, needs vs wants, expenses and smart financial habits through simple examples and interactive tools.</p>
+   <div class="btns">
+    <a class="btn btn-primary" href="#tools">Try Budget Tools</a>
+    <a class="btn hero-outline btn-outline" href="#basics">Learn Basics</a>
+   </div>
+  </div>
+  <div class="hero-card">
+   <div>Sample Monthly Budget</div>
+   <div class="money">$1,000</div>
+   <div class="bar"><span></span></div>
+   <div class="mini-row"><span>Needs</span><b>$500</b></div>
+   <div class="mini-row"><span>Wants</span><b>$300</b></div>
+   <div class="mini-row"><span>Savings</span><b>$200</b></div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="basics">
+ <div class="container">
+  <div class="section-head">
+   <h2>Budgeting Basics</h2>
+   <p>Start with the simple habits that make managing money easier.</p>
+  </div>
+  <div class="cards">
+   <div class="card"><div class="icon">💰</div><h3>Know Your Income</h3><p>Write down the money you receive each month before planning your spending.</p></div>
+   <div class="card"><div class="icon">🧾</div><h3>Track Expenses</h3><p>Record regular bills and everyday purchases so you know where your money goes.</p></div>
+   <div class="card"><div class="icon">🎯</div><h3>Set Goals</h3><p>Choose a savings target and break it into smaller, realistic amounts.</p></div>
+   <div class="card"><div class="icon">📊</div><h3>Make a Plan</h3><p>Give every part of your income a purpose before you start spending.</p></div>
+   <div class="card"><div class="icon">🔎</div><h3>Review Regularly</h3><p>Check your budget and adjust it when your income or expenses change.</p></div>
+   <div class="card"><div class="icon">🛡️</div><h3>Build Savings</h3><p>Even small amounts saved consistently can help create a financial cushion.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="needs" style="background:#fff">
+ <div class="container">
+  <div class="section-head">
+   <h2>Needs vs Wants</h2>
+   <p>Test yourself and learn to separate essential spending from optional spending.</p>
+  </div>
+  <div class="tool" style="max-width:700px;margin:auto">
+   <h3>Quick Classification Quiz</h3>
+   <p id="quizItem" style="font-size:22px;font-weight:800;margin:20px 0">🍎 Groceries</p>
+   <div class="btns">
+    <button class="btn btn-dark" onclick="answerQuiz('need')">Need</button>
+    <button class="btn btn-outline" onclick="answerQuiz('want')">Want</button>
+   </div>
+   <div class="result" id="quizResult">Choose an answer.</div>
+   <p id="quizScore" style="margin-top:12px;color:#70708a">Score: 0 / 0</p>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="tools">
+ <div class="container">
+  <div class="section-head">
+   <h2>Smart Budget Tools</h2>
+   <p>Use these simple calculators to practice planning your money.</p>
+  </div>
+  <div class="tool-grid">
+   <div class="tool">
+    <h3>50 / 30 / 20 Calculator</h3>
+    <label>Monthly income</label>
+    <input id="income" type="number" placeholder="e.g. 50000">
+    <button class="btn btn-dark" style="margin-top:15px" onclick="calcRule()">Calculate</button>
+    <div class="result" id="ruleResult">Enter your income to see the plan.</div>
+   </div>
+   <div class="tool">
+    <h3>Savings Goal</h3>
+    <label>Goal amount</label>
+    <input id="goal" type="number" placeholder="e.g. 30000">
+    <label>Amount you can save each month</label>
+    <input id="monthly" type="number" placeholder="e.g. 5000">
+    <button class="btn btn-dark" style="margin-top:15px" onclick="calcSaving()">Calculate</button>
+    <div class="result" id="savingResult">Enter both amounts.</div>
+   </div>
+   <div class="tool">
+    <h3>Expense Planner</h3>
+    <label>Food</label><input class="expense" type="number" value="0">
+    <label>Transport</label><input class="expense" type="number" value="0">
+    <label>Shopping</label><input class="expense" type="number" value="0">
+    <label>Bills</label><input class="expense" type="number" value="0">
+    <button class="btn btn-dark" style="margin-top:15px" onclick="calcExpenses()">Total Expenses</button>
+    <div class="result" id="expenseResult">Total: 0</div>
+   </div>
+   <div class="tool">
+    <h3>Sample Budget</h3>
+    <div class="progress-wrap"><div class="progress-label"><span>Needs</span><span>50%</span></div><div class="progress"><i style="width:50%"></i></div></div>
+    <div class="progress-wrap"><div class="progress-label"><span>Wants</span><span>30%</span></div><div class="progress"><i style="width:30%"></i></div></div>
+    <div class="progress-wrap"><div class="progress-label"><span>Savings</span><span>20%</span></div><div class="progress"><i style="width:20%"></i></div></div>
+    <div class="result">Tip: Save first, then spend what remains.</div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="mistakes" style="background:#fff">
+ <div class="container">
+  <div class="section-head">
+   <h2>Common Money Mistakes</h2>
+   <p>Tap each question to reveal a simple explanation.</p>
+  </div>
+  <div class="accordion"><button class="acc-q" onclick="toggleAcc(this)">Not tracking small purchases <span>+</span></button><div class="acc-a">Small purchases can add up. Tracking them gives you a clearer picture of your spending.</div></div>
+  <div class="accordion"><button class="acc-q" onclick="toggleAcc(this)">Spending before saving <span>+</span></button><div class="acc-a">If saving is important to you, consider setting aside a planned amount when you receive income.</div></div>
+  <div class="accordion"><button class="acc-q" onclick="toggleAcc(this)">Confusing wants with needs <span>+</span></button><div class="acc-a">Ask whether the purchase is essential right now or simply something you would like to have.</div></div>
+  <div class="accordion"><button class="acc-q" onclick="toggleAcc(this)">No emergency cushion <span>+</span></button><div class="acc-a">A savings cushion can help with unexpected costs and reduce pressure on your monthly budget.</div></div>
+ </div>
+</section>
+
+<section class="section" id="about">
+ <div class="container">
+  <div class="cta">
+   <h2>Learn money skills. Build your future.</h2>
+   <p>BudgetBasics is designed as a simple student-friendly learning website for budgeting, saving and responsible spending.</p>
+   <div class="btns" style="justify-content:center">
+    <a class="btn btn-primary" href="#tools">Start Practicing</a>
+    <a class="btn hero-outline btn-outline" href="#home">Back to Home</a>
+   </div>
+  </div>
+ </div>
+</section>
+
+<footer class="footer">
+ <div class="container">
+  <div class="footer-grid">
+   <div><h3>BudgetBasics</h3><p>A simple educational website for learning practical budgeting and saving habits.</p></div>
+   <div><h4>Quick Links</h4><ul><li><a href="#home">Home</a></li><li><a href="#basics">Basics</a></li><li><a href="#tools">Tools</a></li><li><a href="#mistakes">Mistakes</a></li></ul></div>
+   <div><h4>Topics</h4><ul><li>Budgeting</li><li>Needs vs Wants</li><li>Saving</li><li>Expense Tracking</li></ul></div>
+  </div>
+  <div class="copy">© 2026 BudgetBasics. Educational demo website.</div>
+ </div>
+</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+function toggleMenu(){document.getElementById('navLinks').classList.toggle('show')}
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('show')));
+
+function toast(msg){
+ const t=document.getElementById('toast'); t.textContent=msg; t.style.display='block';
+ setTimeout(()=>t.style.display='none',2200);
+}
+function calcRule(){
+ const n=parseFloat(document.getElementById('income').value);
+ if(!n || n<0){toast('Please enter a valid income.');return}
+ document.getElementById('ruleResult').innerHTML=`Needs: ${n*0.50.toFixed(0)}<br>Wants: ${(n*0.30).toFixed(0)}<br>Savings: ${(n*0.20).toFixed(0)}`;
+}
+function calcSaving(){
+ const goal=parseFloat(document.getElementById('goal').value), monthly=parseFloat(document.getElementById('monthly').value);
+ if(!goal || !monthly || goal<0 || monthly<=0){toast('Please enter valid amounts.');return}
+ const months=Math.ceil(goal/monthly);
+ document.getElementById('savingResult').textContent=`You need about ${months} month${months===1?'':'s'} to reach your goal.`;
+}
+function calcExpenses(){
+ let total=0;
+ document.querySelectorAll('.expense').forEach(i=>total+=Number(i.value)||0);
+ document.getElementById('expenseResult').textContent='Total: '+total.toLocaleString();
+}
+const quiz=[
+ {text:'🍎 Groceries',answer:'need'},
+ {text:'🎮 New video game',answer:'want'},
+ {text:'🏠 Rent',answer:'need'},
+ {text:'👟 Designer shoes you do not need',answer:'want'},
+ {text:'🚌 Transport to school/work',answer:'need'},
+ {text:'🍿 Movie for fun',answer:'want'}
+];
+let qIndex=0,score=0,answered=0;
+function renderQuiz(){document.getElementById('quizItem').textContent=quiz[qIndex].text}
+function answerQuiz(ans){
+ const correct=ans===quiz[qIndex].answer;
+ answered++; if(correct)score++;
+ document.getElementById('quizResult').textContent=correct?'✅ Correct!':'❌ Not quite. Think about whether it is essential.';
+ document.getElementById('quizScore').textContent=`Score: ${score} / ${answered}`;
+ qIndex=(qIndex+1)%quiz.length;
+ setTimeout(renderQuiz,650);
+}
+function toggleAcc(btn){
+ const a=btn.nextElementSibling, open=a.classList.contains('show');
+ document.querySelectorAll('.acc-a').forEach(x=>x.classList.remove('show'));
+ document.querySelectorAll('.acc-q span').forEach(x=>x.textContent='+');
+ if(!open){a.classList.add('show');btn.querySelector('span').textContent='−'}
+}
+</script>
+</body>
+</html>

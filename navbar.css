@@ -1,0 +1,183 @@
+body{
+    margin: 0;
+background-color: whitesmoke;
+}
+.navbar{
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 15px;
+    background-color: white;
+}
+.navlogo{
+    width: 20%;
+    height: 55px;
+      
+    
+}
+.navlogo img{
+    width: 70%;
+    height: 100%;
+}
+.navlinks{
+    width: 40%;
+    height: 50px;
+       
+    
+    padding-top: 20px;
+}
+.search{
+    width: 24%;
+     height: 50px;
+     
+     padding-top: 20px;
+     padding-left: 35px;
+
+}
+.navlinks a{
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 23px;
+color: black;
+transition: all,0.5;
+    
+} .navlinks a:hover{
+    color: red;
+    text-decoration: underline black;
+}
+.search input{
+
+
+    width: 80%;
+    height: 25px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 0px 4px 1px;
+    
+}
+
+ .baner{
+    background: url(slider-lights-1.webp);
+   background-size: cover;
+   text-align: left;
+   
+  padding: 80px;
+   
+}  .hed1{
+color: white;
+margin-left: 50px;
+font-size: 35px;
+
+}
+ .hed2{
+    color: yellow;
+    font-size: 30px;
+}
+.button1{
+    margin-left: 130px;
+    margin-top: 50px;
+height: 40px;
+border: 3px solid white;
+border-radius: 5%;
+color: white;
+background-color: black;
+
+transition: all, 0.5s;
+}
+.button1:hover{
+    height: 41px;
+    color: red;
+    font-weight: 600;
+    
+}
+/* card */
+.cards{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 30px;
+    padding: 50px;
+
+
+}.card{
+    text-align: center ;
+    box-shadow: 0px 2px 5px gray;
+    border-radius: 10px;
+    padding: 15px;
+}.card:hover{
+    transform: scale(1.05);
+    transition: 0.3s;
+}
+
+.card img{
+    width: 100% ;
+    height: 50%;
+}
+button{
+    margin-top: 25px;
+    height: 40px;
+    width: 100px;
+    border-radius: 5%;
+color: white;
+background-color: black;
+transition: all, 0.3s;
+}
+button:hover{
+    height: 41px;
+    color: red;
+    font-weight: 600;
+    
+}footer{
+     display: flex;
+    justify-content:  space-between;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: white;
+}
+.hhh1{
+    padding-top: 10px;
+    padding-left: 30px;
+    width: 25%;
+    height: 300px;
+    
+}
+.hhh2{
+    width: 20%;
+    height: 300px;
+    
+}
+.hhh3{
+    width: 20%;
+    height: 300px;
+    
+}
+.hhh4{
+    
+    width: 30%;
+    height: 300px;
+    
+}.hhh1 img{
+    width: 90%;
+    height: 70px;
+}.hhh1 input{
+    margin-top: 30px;
+    width: 80%;
+    height: 28px;
+    border: 2px solid black;
+
+}
+.hhh1 button{
+    background-color: black;
+    color: white;
+    margin-left: 28px;
+}footer p:hover{
+    transition: all,0.3s;
+    color: red;
+    font-size: 18px;
+}.jjj:hover{
+    color: black;
+}
+.hhh1 button:hover{
+    background-color: black;
+    color: red;
+    margin-left: 28px;
+    width: 105px;
+}
+

@@ -1,0 +1,63 @@
+.hamza1{
+float: right;
+animation: 3s linear 0s infinite running hamza4;
+}
+@keyframes hamza4{
+    from{margin-right: 0%;}
+    to{margin-right: 70%;}
+}
+
+
+.hamza2{
+width: 300px;
+height: 300px;
+background: repeating-radial-gradient(blue,red,yellow);
+border: 6px double black;
+border-radius: 50%;
+animation: 3s linear 0s infinite running hamza5;
+}
+@keyframes hamza5{ 
+    100%{transform: rotateX(360deg);}
+    100%{transform: rotateY(360deg);}
+}
+.hamza3{
+width: 300px;
+height: 300px;
+background: linear-gradient(rgb(0, 255, 76),rgb(190, 10, 94));
+border: 6px double black;
+border-radius: 50%;
+
+animation: 3s linear 0s infinite running hamza6;
+}
+@keyframes hamza6{
+    0%{opacity: 0%;}
+    100%{opacity: 100%;}
+}
+.hamza7{
+width: 300px;
+height: 300px;
+background: linear-gradient(rgb(217, 255, 0),rgb(10, 13, 190));
+border: 6px double black;
+border-radius: 50%;
+
+animation: 3s linear 0s infinite running hamza8;
+}
+@keyframes hamza8{ 
+    50%{transform: scale(0.5,0.5);}
+}.hamza9{
+width: 300px;
+height: 300px;
+
+border: 6px double black;
+border-radius: 50%;
+
+animation: 5s linear 0s infinite running hamza0;
+}
+@keyframes hamza0{ 
+    0%{background-color: brown;}
+    20%{background-color: rgb(42, 165, 52);}
+    40%{background-color: rgb(165, 155, 42);}
+    60%{background-color: rgb(42, 149, 165);}
+    80%{background-color: rgb(165, 42, 134);}
+    100%{background-color: rgb(11, 11, 11);}
+}
